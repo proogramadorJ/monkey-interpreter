@@ -2,17 +2,19 @@ package main
 
 import (
 	"fmt"
+	"os"
+	"os/user"
 
-	"github.com/proogramadorJ/monkey-interpreter/lexer"
-	"github.com/proogramadorJ/monkey-interpreter/token"
+	"github.com/proogramadorJ/monkey-interpreter/repl"
 )
 
 func main() {
-	var tk token.Token
-	var l lexer.Lexer
+	user, err := user.Current()
+	if err != nil {
+		panic(err)
+	}
 
-	tk.Type = "STRING"
-	fmt.Println(tk.Type)
-	//fmt.Println(l.position)
-
+	fmt.Printf("Hello %s! This is the Monkey programming language!\n", user.Username)
+	fmt.Printf("Fell free to type in command\n")
+	repl.Start(os.Stdin, os.Stdout)
 }
