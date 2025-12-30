@@ -46,6 +46,11 @@ type Identifier struct {
 	Value string
 }
 
+type IntegerLiteral struct {
+	Token token.Token
+	Value int64
+}
+
 // Let Statement
 func (ls *LetStatement) statementNode() {}
 func (ls *LetStatement) TokenLiteral() string {
@@ -103,6 +108,11 @@ func (i *Identifier) TokenLiteral() string {
 func (i *Identifier) String() string {
 	return i.Value
 }
+
+// Integer Literal
+func (il *IntegerLiteral) expressionNode()      {}
+func (il *IntegerLiteral) TokenLiteral() string { return il.Token.Literal }
+func (il *IntegerLiteral) String() string       { return il.Token.Literal }
 
 // Program
 func (p *Program) TokenLiteral() string {
